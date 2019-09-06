@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="columnCount" format="integer"></attr>
+    <attr name="columnSpan" format="dimension"></attr>
+    <attr name="rowSpan" format="dimension"></attr>
+    <declare-styleable name="CustomizeGridView">
+        <attr name="columnCount"></attr>
+        <attr name="columnSpan"></attr>
+        <attr name="rowSpan"></attr>
+    </declare-styleable>
+</resources>

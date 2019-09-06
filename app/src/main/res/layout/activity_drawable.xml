@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".layouts.DrawableActivity">
+    <android.support.constraint.ConstraintLayout android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <!--
+            BitmapDrawable
+            1）直接引用文件
+            2) 用一个bitmap的xml文件来包装一个bitmap图片，如这里bitmap.xml包装origin.jpeg
+         -->
+        <TextView
+            android:id="@+id/bitmap"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@android:color/holo_blue_bright"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:text="bitmap"
+            android:gravity="center"
+            />
+        <ImageView
+            android:id="@+id/bitmap1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:src="@drawable/origin"
+            android:scaleType="centerInside"
+            android:background="@android:color/holo_purple"
+            app:layout_constraintTop_toBottomOf="@id/bitmap"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintWidth_percent="0.5"
+            app:layout_constraintWidth_default="percent"
+            app:layout_constraintDimensionRatio="1:1"
+            />
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/bitmap"
+            app:layout_constraintTop_toBottomOf="@id/bitmap"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintWidth_percent="0.5"
+            app:layout_constraintWidth_default="percent"
+            app:layout_constraintDimensionRatio="1:1"
+            />
+
+        <!--
+            LayerDrawable
+         -->
+        <TextView
+            android:id="@+id/layer"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@android:color/holo_blue_bright"
+            app:layout_constraintTop_toBottomOf="@id/bitmap1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:text="layer drawable"
+            android:gravity="center"
+            />
+        <ImageView
+            android:id="@+id/imageViewLayer"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/layer"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:background="@drawable/layer"
+            />
+        <!--
+            StateListDrawable
+        -->
+        <TextView
+            android:id="@+id/stateList"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@android:color/holo_blue_bright"
+            app:layout_constraintTop_toBottomOf="@id/imageViewLayer"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:text="state list layout"
+            android:gravity="center"
+            />
+        <!--
+            shadowColor
+            shadowDx
+            shadowDy
+            shadowRadius
+            配置的是文字的shadow
+
+            android:stateListAnimator="@null", 去除点击时的shadow看来是在动画里面加的shadow,是用的android:elevation=""吗
+
+            style="?android:attr/borderlessButtonStyle"也可以去掉shadow
+        -->
+        <Button
+            android:id="@+id/stateListBtn"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/stateList"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:text="state list drawable"
+            android:background="@drawable/state_list"
+            android:stateListAnimator="@null"
+            />
+
+        <TextView
+            android:id="@+id/levelList"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@android:color/holo_blue_bright"
+            app:layout_constraintTop_toBottomOf="@id/stateListBtn"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:text="level list"
+            android:gravity="center"
+            />
+        <!--
+            对于配合android:src和setImageLevel来使用
+            对于其它元素： LevelListDrawable ld = view.getBackground(); ld.setLevel
+        -->
+        <Button
+            android:id="@+id/levelListBtn"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            app:layout_constraintTop_toBottomOf="@id/levelList"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:text="state list drawable"
+            android:background="@drawable/level"
+            android:stateListAnimator="@null"
+            />
+
+        <TextView
+            android:id="@+id/transition"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@android:color/holo_blue_bright"
+            app:layout_constraintTop_toBottomOf="@id/levelListBtn"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:text="transition"
+            android:gravity="center"
+            />
+        <Button
+            android:id="@+id/transitionBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/transition"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:text="transition button"
+            android:stateListAnimator="@null"
+            android:background="@drawable/transition"
+            />
+
+        <TextView
+            android:id="@+id/inset"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@android:color/holo_blue_bright"
+            app:layout_constraintTop_toBottomOf="@id/transitionBtn"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:text="inset"
+            android:gravity="center"
+            />
+        <Button
+            android:id="@+id/insetBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/inset"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:text="transition button"
+            android:stateListAnimator="@null"
+            android:background="@drawable/inset"
+            />
+
+        <Button
+            android:id="@+id/clipBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/insetBtn"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:text="clip button"
+            android:stateListAnimator="@null"
+            android:background="@drawable/clip"
+            />
+
+        <Button
+            android:id="@+id/scaleBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/clipBtn"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:text="scale button"
+            android:stateListAnimator="@null"
+            android:background="@drawable/scale"
+            android:textColor="@color/color"
+            />
+
+        <Button
+            android:id="@+id/paddingBgBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/scaleBtn"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:text="padding background button"
+            android:stateListAnimator="@null"
+            android:background="@drawable/padding_bg_btn"
+            android:textColor="@color/color"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            />
+    </android.support.constraint.ConstraintLayout>
+</android.support.v4.widget.NestedScrollView>

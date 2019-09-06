@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    在两个item之间做过渡, view.getBackground().startTransition()
+    多过两个item时，多余的item无效
+    left, top之类的是item的偏移
+    item里面可以有shape
+-->
+<transition xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:left="20dp">
+        <shape>
+            <solid android:color="@android:color/holo_green_light"></solid>
+        </shape>
+    </item>
+    <item android:drawable="@android:color/holo_purple"></item>
+</transition>

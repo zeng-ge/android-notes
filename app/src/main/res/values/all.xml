@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 可以通过R.id.uniqueId引用 -->
+    <item name="uniqueId" type="id"/>
+
+    <!--定义颜色值-->
+    <color name="green">#00ff00</color>
+
+    <!--通过R.dimen引用 R.dimen.screenWidth-->
+    <dimen name="screenWidth">100dp</dimen>
+
+    <bool name="enable">false</bool>
+
+    <!--R.string-->
+    <string name="name">sky</string>
+
+    <!--R.integer-->
+    <integer name="age">20</integer>
+
+    <!--
+        attr用于定义可在组件中使用的属性，如View对应的layout_width, layout_height等都对应attr的定义
+        enum表示多个值中只能选一个，使用时用名字，如layout_width对应的match_parent, wrap_content为-1, -2
+    -->
+    <attr name="rules" format="enum">
+        <enum name="optional" value="0"></enum>
+        <enum name="requied" value="1"></enum>
+    </attr>
+
+    <!--可以有多个，如配置center|left，值要支持或计算-->
+    <attr name="align" format="flags">
+        <flag name="center" value="0"></flag>
+        <flag name="left" value="1"></flag>
+        <flag name="right" value="2"></flag>
+        <flag name="top" value="4"></flag>
+    </attr>
+
+    <!--定义自定义组件可以使用的属性-->
+    <attr name="myColor" format="color"></attr>
+    <declare-styleable name="CustomizeRectangle">
+        <!--
+            这里的attr可以在这里定义完整形式，也可以将其定义在外部，名字相同即为引用
+        -->
+        <attr name="rules"></attr>
+        <attr name="fillColor" format="color"></attr>
+        <attr name="text" format="string"></attr>
+        <attr name="myColor"></attr>
+    </declare-styleable>
+
+    <!--数组都通过R.array来获取，不管string, integer还是无类型array-->
+    <!--字符串数组-->
+    <string-array name="students">
+        <item>sky</item>
+        <item>moon</item>
+    </string-array>
+    <!--整数数组-->
+    <integer-array name="ages">
+        <item>21</item>
+        <item>22</item>
+    </integer-array>
+    <!--无类型数组-->
+    <array name="array">
+        <item>sky</item>
+        <item>abc</item>
+    </array>
+
+
+</resources>

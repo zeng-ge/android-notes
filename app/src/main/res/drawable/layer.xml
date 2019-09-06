@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--
+        item内部可以是shape, image等
+        这里将ImageView的src或background设成layer.xml
+        哪果ImageView指定宽高，item的宽高大于元素的区域会被截断
+        如果宽高为wrap_content, item的最大宽高会作为元素的宽高，如果item不指定宽高，而shape的size指定了宽高刚shape的最大宽高会作为元素的宽高
+
+        如果元素的宽高(非wrap_content)超过了size的最大宽高，item中的shape不会拉伸
+
+        总结：
+        1）元素本身指定的宽高优先级最高
+        2）item的宽高过大时会被元素截断
+        3) item或shape有宽高时不会拉伸，没有的话会拉
+        4) shape的宽高小于item时会拉伸, shape的宽高大于item时会被截断
+        5) item没有宽高时，shape的宽高生效作为item的宽高
+
+        感觉item里放shape的意思不大，还是放bitmap才是正道
+
+        后面的item绘制在上面
+
+        item与shape没有宽高时会拉伸到整个元素，有宽高时不会拉伸
+
+        item属性：left, top, bottom, right是相对元素的偏移量, 它们会受上一个item的padding影响
+        padding之间会相互影响，如第二个item会偏移第一个item的padding
+        所有的item有没有配置padding的情况下，它们的left, top, bottom, right都是元素本身的4个角
+        item的left， top原点为它所有上层item的padding之和，与left,top无关,只受padding影响
+
+        layer-list的paddingMode很重要，决定了每个item的padding的计算规则
+        nest: 每个item的padding边界是下一个item内容开始的地方
+        stack: 每个item的padding互不影响，会覆盖
+        默认是nest
+    -->
+    <item >
+        <shape android:shape="rectangle">
+            <padding android:left="10dp"></padding>
+            <solid android:color="@android:color/darker_gray"></solid>
+        </shape>
+    </item>
+    <item android:left="10dp" android:top="10dp" android:right="10dp" android:bottom="10dp">
+        <shape android:shape="rectangle">
+            <padding android:left="10dp"></padding>
+            <solid android:color="@android:color/tertiary_text_dark"></solid>
+        </shape>
+    </item>
+    <item android:left="10dp" android:right="10dp" android:bottom="10dp">
+        <shape android:shape="rectangle">
+            <solid android:color="@android:color/white"></solid>
+        </shape>
+    </item>
+    <!--它的偏移只受到前几层的padding影响 -->
+    <item android:gravity="center_vertical|left" android:width="200dp" android:height="200dp">
+        <shape android:shape="rectangle">
+            <size android:height="100dp" android:width="100dp"></size>
+            <solid android:color="@android:color/holo_green_light"></solid>
+        </shape>
+    </item>
+    <item android:gravity="center" android:width="100dp" android:height="100dp">
+        <shape android:shape="rectangle">
+            <size android:height="160dp" android:width="60dp"></size>
+            <solid android:color="@android:color/holo_purple"></solid>
+        </shape>
+    </item>
+    <item android:gravity="center">
+        <shape android:shape="rectangle">
+            <size android:height="240dp" android:width="30dp"></size>
+            <solid android:color="@android:color/holo_red_dark"></solid>
+        </shape>
+    </item>
+</layer-list>

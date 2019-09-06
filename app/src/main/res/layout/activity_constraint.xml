@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="0dp"
+    >
+
+    <!--
+        约束位置就是组件：left, right, top, bottom, start, end, baseline
+        left to left, left to right
+        right to left, right to right
+        top to top, top to bottom
+        bottom to top, bottom to bottom
+        start to end, end to start
+        baseline to baseline
+        前面是当前元素，to后面的是目标元素（即相对于它的上下左右）
+        三个元素形成链后， chainStyle只有在第一个元素上设置才有效
+
+        button的background默认应该是一个drawable,看起来周围有点padding之类的
+
+
+        在约束存局中，只有先确定其位置，margin才会有效
+    -->
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12dp"
+        android:lineHeight="12dp"
+        android:gravity="left|center_vertical"
+        android:layout_marginTop="20dp"
+        android:text="button1"
+        android:layout_marginLeft="50dp"
+        android:background="@drawable/button"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/button2"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        android:shadowColor="@android:color/transparent"
+        />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="button2"
+        app:layout_constraintTop_toTopOf="@id/button1"
+        app:layout_constraintLeft_toRightOf="@id/button1"
+        app:layout_constraintRight_toLeftOf="@id/button3"
+        />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="button3"
+        app:layout_constraintTop_toTopOf="@id/button1"
+        app:layout_constraintLeft_toRightOf="@id/button2"
+        app:layout_constraintRight_toRightOf="parent"
+        />
+
+    <!--
+        gone margin, button12 goneMarginLeft=150dp，当button11为gone时会生效
+        由于button12在垂直方向是相对于button11的，当button11为gone时，它就靠在了button1下面，button11的marginTop就不会影响到button12了
+    -->
+    <Button
+        android:id="@+id/button11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:text="button11"
+        android:background="@android:color/holo_purple"
+        app:layout_constraintTop_toBottomOf="@id/button1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:visibility="gone"
+        />
+    <Button
+        android:id="@+id/button12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        app:layout_goneMarginLeft="50dp"
+        app:layout_goneMarginRight="100dp"
+        android:text="button12"
+        android:background="@android:color/holo_purple"
+        app:layout_constraintTop_toTopOf="@id/button11"
+        app:layout_constraintLeft_toRightOf="@id/button11"
+        />
+
+
+    <!--
+        垂直水平居中的搞法跟html里面有点像，上下左右都粘在父元素边界上，就居中了，像不像margin:auto时left:0, right: 0, top: 0, bottom:0时的居中
+        如果不想居中，在水平或垂直想按百分比偏左或偏右的话，可以配置bias，相当于权重，取值0到1， 0.5就是居中
+    -->
+    <Button
+        android:id="@+id/button21"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:text="button21"
+        android:background="@android:color/holo_purple"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.2"
+        />
+
+    <Button
+        android:id="@+id/button22"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="button22"
+        android:background="@android:color/holo_purple"
+        app:layout_constraintCircle="@id/button21"
+        app:layout_constraintCircleRadius="120dp"
+        app:layout_constraintCircleAngle="225"
+        />
+    <Button
+        android:id="@+id/button23"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="button23"
+        android:background="@android:color/holo_purple"
+        app:layout_constraintCircle="@id/button21"
+        app:layout_constraintCircleRadius="120dp"
+        app:layout_constraintCircleAngle="135"
+        />
+
+    <!--
+        自适应宽高，有点像flex
+        当元素宽或高为0时，且在水平或垂直方向粘在某个元素上时，宽度或高度会拉申，如果flex
+        可以用
+        layout_constraintWidth_max
+        layout_constraintWidth_min
+        layout_constraintHeight_max
+        layout_constraintHeight_min
+        来限制最大宽高
+        自适应宽高时，maxWidth或maxHeight无效，只有wrap_content时maxWidth或maxHeight才会生效
+    -->
+    <Button
+        android:id="@+id/button31"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="button31"
+        android:background="@android:color/holo_purple"
+        app:layout_constraintTop_toBottomOf="@id/button23"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintWidth_max="200dp"
+        android:maxWidth="100dp"
+        />
+
+    <!--
+        百分比指定宽高
+        layout_constraintDimensionRatio设置宽高比W, 2:1或高宽比H,2:1
+        不给W或H默认是宽：高，按比例来的话，宽高都要为0dp
+        layout_constraintWidth_default percent, spread, wrap三类宽度设定
+        layout_constraintWidth_percent宽度百分比，要配合上面的percent一起用
+    -->
+    <Button
+        android:id="@+id/button32"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="20dp"
+        android:text="button32"
+        android:background="@android:color/holo_purple"
+        app:layout_constraintTop_toBottomOf="@id/button31"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintWidth_percent="0.5"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintDimensionRatio="2:1"
+        />
+
+
+    <!--
+        宽高权重
+        在链中app:layout_constraintHorizontal_weight相当于flex，数字越大，占据的空间百分比越多
+    -->
+    <Button
+        android:id="@+id/button41"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="button41"
+        android:background="@android:color/holo_purple"
+        app:layout_constraintTop_toBottomOf="@id/button32"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/button42"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintHorizontal_weight="1"
+        />
+    <Button
+        android:id="@+id/button42"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="button42"
+        android:background="@android:color/holo_purple"
+        app:layout_constraintTop_toBottomOf="@id/button32"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/button41"
+        app:layout_constraintHorizontal_weight="2"
+        />
+
+</android.support.constraint.ConstraintLayout>

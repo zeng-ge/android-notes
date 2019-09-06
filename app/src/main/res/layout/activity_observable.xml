@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data class="ObservableActivity">
+        <import type="com.example.session.models.User" />
+        <import type="com.example.session.layouts.databinding.Product" />
+        <import type="com.example.session.layouts.databinding.Order" />
+        <import type="com.example.session.layouts.databinding.ObservableActivity.EventHandler" />
+        <variable
+            name="product"
+            type="Product" />
+        <variable
+            name="order"
+            type="Order" />
+        <variable
+            name="user1"
+            type="User" />
+        <variable
+            name="eventHandler"
+            type="EventHandler" />
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".layouts.databinding.ObservableActivity">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:text="@{product.name + product.details + order.name + user1.name}"
+            />
+
+        <Button
+            android:id="@+id/buttonHandler"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textView"
+            android:onClick="@{eventHandler.onClick}"
+            android:text="button handler"
+            />
+
+        <!--
+            为include传递参数要做到以下几点：
+            1) xmlns:bind="http://schemas.android.com/apk/res-auto"        同app一样，如果用app:product编译报错
+            2) include要加id，不然无法获取到include下面布局元素，如binding.includeId.button，不加id也可以运行，但是在外部就不好取值了
+            3) include的layout内部也要定义<data>，import Product，声明variable
+            在编译的ObservableActivityImpl中，executeBindings方法内部会有this.includeId.setProduct(product);当值变化时会执行
+
+            每个binding实例本身是包含了所有有data binding的view的引用的，
+            像include这种情况，它会用include的id作为引用layout的binding实例(layout内部有data标签，所以它也会生成一个Binding的类)
+        -->
+        <include layout="@layout/activity_observable_button"
+            android:id="@+id/includeId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/buttonHandler"
+            bind:product="@{product}"
+            ></include>
+    </android.support.constraint.ConstraintLayout>
+</layout>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:gerry="http://schemas.android.com/apk/res/com.example.session"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".layouts.CustomizeActivity">
+
+    <com.example.session.components.CustomizeRectangle
+        android:id="@+id/firstRectangle"
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:padding="20dp"
+        android:background="?attr/colorPrimary"
+        gerry:fillColor="#00ff00"
+        gerry:text="hello world"
+        gerry:myColor="#00ff11"
+        />
+
+    <com.example.session.components.CustomizeGridView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/firstRectangle"
+        android:background="@android:color/holo_green_light"
+        gerry:columnCount="4"
+        gerry:columnSpan="10dp"
+        gerry:rowSpan="10dp"
+        >
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Button1"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Button2"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Button3"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Button4"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Button5"/>
+    </com.example.session.components.CustomizeGridView>
+
+</android.support.constraint.ConstraintLayout>

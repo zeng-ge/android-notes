@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    gravity是指怎么放drawable, 如left放左边，center放中间
+    level越小显示的区域越小，0为完全裁剪，10000为不裁剪，从小变大的过程像不像scale啊
+-->
+<clip xmlns:android="http://schemas.android.com/apk/res/android" android:gravity="left" android:clipOrientation="horizontal" android:drawable="@android:color/holo_red_light">
+    <shape>
+        <solid android:color="@android:color/holo_green_light"></solid>
+    </shape>
+</clip>

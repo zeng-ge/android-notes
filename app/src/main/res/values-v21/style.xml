@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--
+        这里有两个styles.xml,一个针对是v21，windowActivityTransitions在API 21才有效，
+        这里的AppTheme并不会将正常AppTheme的样式合并过来，是各用各的
+
+        所以要定义一个baseTheme(在正常的styles.xml里面)，然后用AppTheme继承它，这样API 21里面的样式就可以继承过来
+    -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">#123456</item>
+        <item name="android:windowActivityTransitions">true</item>
+    </style>
+    <style name="AppTheme.transparent" parent="AppTheme">
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+</resources>

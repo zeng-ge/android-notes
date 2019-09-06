@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    增强drawable, 比如repeat背景图
+    gravity控制背景图的位置
+    tileMode控制图片的平铺方式，如repeat，mirror, mirror就像镜子一样，一正一反
+    当tileMode生效时, gravity不起作用
+    还有很多属性，如防抖动、antialias等
+
+    对于ImageView，当src指定为bitmap时gravity与tileMode根本没用，看来只有用作背景图才是正道
+-->
+<bitmap xmlns:android="http://schemas.android.com/apk/res/android"
+    android:src="@drawable/icon_pickup"
+    android:tileMode="repeat"
+    android:gravity="center"
+    android:antialias="true"
+    android:dither="true"
+    ></bitmap>

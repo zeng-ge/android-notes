@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+clip是剪切，scale是缩放
+scaleWidth与scaleHeight指的是缩放范围
+drawable占用的空间：
+viewWidth * (1- scaleWidth) + //这是不管缩不缩放都会占有的空间，100%相当于宽度可以在0-100%之间变是，60%相当于宽度可以在40%到100%之间变化
+viewWidth * scaleWidth * (number/10000)
+scale控制的是占有多少空间，而不是减少多少空间,这点根clip一样，clip不能控制width与height
+
+按上面的计算方法，level为0时应该完全显示drawable才对，可惜level为0时不显示drawable，无视scaleWidth与scaleHeight
+
+如下面的60%，level为1时，宽度为40%
+
+scaleGravity指的是怎么放drawable, 如left放在左边，scale时从左向右移变大, center为中间，从中间向外放大
+
+用scale来做进度条的话应该很爽
+-->
+<rotate xmlns:android="http://schemas.android.com/apk/res/android"
+    android:level="1000"
+    android:scaleGravity="left"
+    android:scaleWidth="60%"
+    android:scaleHeight="50%" android:drawable="@android:color/holo_red_light">
+</rotate>

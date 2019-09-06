@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">Session</string>
     <string name="rule">rule</string>
+    <string name="title_activity_customize_component">Customize</string>
+    <string name="title_activity_recycle_view">RecycleViewActivity</string>
+    <string name="title_activity_resolver">ResolverActivity</string>
+    <string name="take_photo">Taks Photo</string>
 </resources>

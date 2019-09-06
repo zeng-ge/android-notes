@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/dragContainer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".layouts.events.DragActivity">
+
+    <Button
+        android:id="@+id/dragButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="drag button"/>
+
+    <Button
+        android:id="@+id/dragButton2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@id/dragButton"
+        app:layout_constraintTop_toTopOf="@id/dragButton"
+        android:text="drag button2"/>
+
+    <Button
+        android:id="@+id/guestureDetectorButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/dragButton"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:text="guesture detector"/>
+
+    <com.example.session.layouts.events.CustomizeLinearLayout
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:background="@android:color/holo_purple">
+        <com.example.session.layouts.events.CustomizeView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@android:color/holo_green_light"
+            />
+        <com.example.session.layouts.events.CustomizeView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="-20dp"
+            android:background="@android:color/holo_red_light"
+            />
+    </com.example.session.layouts.events.CustomizeLinearLayout>
+
+</android.support.constraint.ConstraintLayout>

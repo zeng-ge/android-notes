@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!--
+        指定生成的类名，默认为Activity名后面加上Bing
+        生成类的位置：com.example.session.databinding
+
+        @{}包装表达示，表达示要遵守java语法，如||只能对应bool类型，三元素表达示也一个样
+        表达示可以调用variable的方法，如果import的类有静态方法，可以直接用类名.静态方法
+
+        ${}里面放不了字符串
+        不支持?.
+        测试不支持??，用三元运算 a != null ? a : b代替
+
+        对于null值，如这里user为null，不会报错，因为它会编译成if(user!=null){}，不管多长的调用都会判断null，如user.name.substring(0, 10)
+
+    -->
+    <data class="UserBinding">
+        <!--
+            import很重要，对于静态方法，直接导入类后就能使用
+            variable定义变量
+        -->
+        <import type="com.example.session.models.User" />
+        <!--
+            kotlin中StringUtils用Object定义可以运行，用class然后companion object{}就编译不过，找不到方法
+            android:text="@{StringUtils.toUpperCase(user.name)}"
+            需要在方法上加JvmStatic注解才行
+        -->
+        <import type="com.example.session.utils.StringUtils"/>
+        <variable
+            name="user"
+            type="User" />
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/holo_green_light">
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:text="@{user.name.substring(0, 3)}"
+            android:background="@android:color/holo_red_light"
+            />
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/button1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:text="@{user.name != null ? user.age.toString() : StringUtils.toUpperCase(user.name)}"
+            android:background="@android:color/holo_purple"
+            />
+        <!--
+            下面的app:text是自定义的绑定属性，
+            用@BindingAdapter指定绑定那个属性，可以指定多个
+            编译结果：com.example.session.utils.TextBind.text(this.button3, userName);
+            可以看出其能根据app:text直接找到对应的class和方法
+            object TextBind{
+                @JvmStatic
+                @BindingAdapter("text")
+                fun text(view: View, text: String): Unit{
+                    (view as TextView).text = text
+                }
+            }
+        -->
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/button2"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:background="@android:color/holo_purple"
+            app:text="@{user.name}"
+            />
+    </android.support.constraint.ConstraintLayout>
+</layout>
